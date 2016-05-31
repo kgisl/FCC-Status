@@ -153,7 +153,6 @@ function getData(jsonData) {
 
   $("#data").html(html);
 
-  //var a = $("#data").html();
   $("#campers").html(
     '<h2><span class="label label-info">Total Campers:- ' + j +
     '</span></h2>');
