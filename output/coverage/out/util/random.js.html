@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .code {
+            white-space: pre;
+            font-family: courier new;
+            width: 100%;            
+        }
+        
+        .miss {
+            background-color: #FF0000;
+        }
+        
+        .hit {
+            background-color: #94FF7C;
+        }
+        
+        .undef {
+            background-color: #FFFFFF;
+        } 
+
+        .nottested {
+            background-color: #FFFF00;
+        }         
+    </style>
+</head>
+<body>
+
+<div class="code hit">Math.randomBelow = function (n) {</div>
+<div class="code hit">    'use strict';</div>
+<div class="code hit">    if (n &lt; 1) {</div>
+<div class="code hit">        throw 'invalid argument: ' + n;</div>
+<div class="code undef">    }</div>
+<div class="code hit">    return Math.floor(Math.random() * n);</div>
+<div class="code undef">};</div>
+
+
+</body>
+</html>

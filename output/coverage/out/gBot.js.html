@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .code {
+            white-space: pre;
+            font-family: courier new;
+            width: 100%;            
+        }
+        
+        .miss {
+            background-color: #FF0000;
+        }
+        
+        .hit {
+            background-color: #94FF7C;
+        }
+        
+        .undef {
+            background-color: #FFFFFF;
+        } 
+
+        .nottested {
+            background-color: #FFFF00;
+        }         
+    </style>
+</head>
+<body>
+
+<div class="code nottested">/*global $:false */</div>
+<div class="code nottested">/*jshint quotmark: false */</div>
+<div class="code nottested">/*jshint loopfunc: true */</div>
+<div class="code nottested">/*jslint latedef:false*/</div>
+<div class="code nottested">/*jslint browser:true */</div>
+<div class="code nottested">/*jshint maxparams: 5 */</div>
+<div class="code nottested">var key = "ae28f23f134c4364ad45e7b7355cfa91c92038bb";</div>
+<div class="code nottested">var arr = [];</div>
+<div class="code nottested">var points = 0;</div>
+<div class="code nottested">var html =</div>
+<div class="code nottested">    '&lt;table class="table" id="data"&gt;<tr><th>SNO</th><th>Avatar</th><th>Name</th><th>User Name</th><th>Points</th></tr>';</div>
+<div class="code nottested"></div>
+<div class="code nottested"></div>
+<div class="code nottested">$(document).ready(function () {</div>
+<div class="code nottested">    "use strict";</div>
+<div class="code nottested"></div>
+<div class="code nottested">    var url = "https://api.gitter.im/v1/rooms?access_token=" + key;</div>
+<div class="code nottested">    var roomId = "";</div>
+<div class="code nottested">    var noOfUsers = 0;</div>
+<div class="code nottested">    $.ajax({</div>
+<div class="code nottested">        type: 'GET',</div>
+<div class="code nottested">        url: url,</div>
+<div class="code nottested">        //data:data,</div>
+<div class="code nottested">        async: false,</div>
+<div class="code nottested">        dataType: 'json',</div>
+<div class="code nottested">        /*beforeSend:function(){</div>
+<div class="code nottested">            // this is where we append a loading image</div>
+<div class="code nottested">            $('#ajax-panel').html('&lt;div class="loading"&gt;<img src="/img/loading.gif" alt="Loading..." /></div>');</div>
+<div class="code nottested">        },*/</div>
+<div class="code nottested">        success: function (data) {</div>
+<div class="code nottested">            //Do stuff with the JSON data</div>
+<div class="code nottested">            for (var i = 0; i &lt; data.length; i = i + 1) {</div>
+<div class="code nottested">                if (data[i].name === 'kgisl/campsite') {</div>
+<div class="code nottested">                    roomId = data[i].id;</div>
+<div class="code nottested">                    noOfUsers = data[i].userCount;</div>
+<div class="code nottested">                    break;</div>
+<div class="code nottested">                }</div>
+<div class="code nottested">            }</div>
+<div class="code nottested">        },</div>
+<div class="code nottested">        error: function ( /* xhr, textStatus, errorThrown */ ) {</div>
+<div class="code nottested">            points = 0;</div>
+<div class="code nottested">        }</div>
+<div class="code nottested">    });</div>
+<div class="code nottested">    var jsonData = [];</div>
+<div class="code nottested"></div>
+<div class="code nottested"></div>
+<div class="code nottested">    for (var i = 0; i &lt; noOfUsers; i += 30) {</div>
+<div class="code nottested">        $.ajax({</div>
+<div class="code nottested">            type: 'GET',</div>
+<div class="code nottested">            url: 'https://api.gitter.im/v1/rooms/' + roomId +</div>
+<div class="code nottested">                '/users?access_token=' + key + '&skip=' + i,</div>
+<div class="code nottested">            //data:data,</div>
+<div class="code nottested">            async: false,</div>
+<div class="code nottested">            dataType: 'json',</div>
+<div class="code nottested">            success: function (data) {</div>
+<div class="code nottested">                $.merge(jsonData, data);</div>
+<div class="code nottested">                //alert(jsonData);</div>
+<div class="code nottested">            },</div>
+<div class="code nottested">            error: function ( /* xhr, textStatus, errorThrown */ ) {</div>
+<div class="code nottested">                points = 0;</div>
+<div class="code nottested">            }</div>
+<div class="code nottested">        });</div>
+<div class="code nottested">    }</div>
+<div class="code nottested">    getData(jsonData);</div>
+<div class="code nottested">});</div>
+<div class="code nottested"></div>
+<div class="code nottested"></div>
+<div class="code nottested">function browniePointsFetcher(uname) {</div>
+<div class="code nottested">    "use strict";</div>
+<div class="code nottested"></div>
+<div class="code nottested">    var points = 0;</div>
+<div class="code nottested">    var url = 'https://www.freecodecamp.com/api/users/about?username=' +</div>
+<div class="code nottested">        uname.toLowerCase();</div>
+<div class="code nottested">    $.ajax({</div>
+<div class="code nottested">        type: 'GET',</div>
+<div class="code nottested">        url: url,</div>
+<div class="code nottested">        //data:data,</div>
+<div class="code nottested">        async: false,</div>
+<div class="code nottested">        dataType: 'json',</div>
+<div class="code nottested">        success: function (data) {</div>
+<div class="code nottested">            //Do stuff with the JSON data</div>
+<div class="code nottested">            points = data.about.browniePoints;</div>
+<div class="code nottested">        },</div>
+<div class="code nottested">        error: function ( /* xhr, textStatus, errorThrown */ ) {</div>
+<div class="code nottested">            points = 0;</div>
+<div class="code nottested">        }</div>
+<div class="code nottested">    });</div>
+<div class="code nottested">    return points;</div>
+<div class="code nottested">}</div>
+<div class="code nottested"></div>
+<div class="code nottested"></div>
+<div class="code nottested">function dataFormatter(image, name, uname, points) {</div>
+<div class="code nottested">    "use strict";</div>
+<div class="code nottested"></div>
+<div class="code nottested">    var tempHtml = '&lt;td&gt;';</div>
+<div class="code nottested">    tempHtml += '&lt;img src=' + image +</div>
+<div class="code nottested">        ' class="img-thumbnail" width="50px" &gt;&lt;/img></td>';</div>
+<div class="code nottested">    tempHtml += '&lt;td&gt;';</div>
+<div class="code nottested">    tempHtml += '&lt;h3&gt;' + name + '</h3></td>';</div>
+<div class="code nottested">    tempHtml += '&lt;td&gt;';</div>
+<div class="code nottested">    tempHtml += '&lt;h3&gt;<a href="http://freecodecamp.com/' + uname +</div>
+<div class="code nottested">        '" target="_blank"&gt;' + uname + '&lt;/a></h3></td>';</div>
+<div class="code nottested">    tempHtml += '&lt;td&gt;';</div>
+<div class="code nottested">    if (points === 0) {</div>
+<div class="code nottested">        tempHtml += '&lt;h3&gt;<span class="label label-warning">' + points +</div>
+<div class="code nottested">            '&lt;/span&gt;</h3></td>';</div>
+<div class="code nottested">    } else {</div>
+<div class="code nottested">        tempHtml += '&lt;h3&gt;' + points + '</h3></td>';</div>
+<div class="code nottested">    }</div>
+<div class="code nottested"></div>
+<div class="code nottested">    return tempHtml;</div>
+<div class="code nottested">}</div>
+<div class="code nottested"></div>
+<div class="code nottested"></div>
+<div class="code nottested">function getData(jsonData) {</div>
+<div class="code nottested">    "use strict";</div>
+<div class="code nottested"></div>
+<div class="code nottested">    //alert(json["array"].length</div>
+<div class="code nottested">    var len = jsonData.length;</div>
+<div class="code nottested">    var sum = 0;</div>
+<div class="code nottested">    for (var i = 0; i &lt; len; i = i + 1) {</div>
+<div class="code nottested">        if (jsonData[i].id !== '546fc9f1db8155e6700d6e8c' &&</div>
+<div class="code nottested">            jsonData[i].id !== '5433c4b0163965c9bc209625' &&</div>
+<div class="code nottested">            jsonData[i].id !== '572db9c4c43b8c6019719c7a' &&</div>
+<div class="code nottested">            jsonData[i].id !== '570a6857187bb6f0eadec072') {</div>
+<div class="code nottested">            points = browniePointsFetcher(jsonData[i].username);</div>
+<div class="code nottested">            sum += points;</div>
+<div class="code nottested">            arr.push({</div>
+<div class="code nottested">                avatar: jsonData[i].avatarUrlSmall,</div>
+<div class="code nottested">                name: jsonData[i].displayName,</div>
+<div class="code nottested">                uname: jsonData[i].username,</div>
+<div class="code nottested">                points: points</div>
+<div class="code nottested">            });</div>
+<div class="code nottested"></div>
+<div class="code nottested">            $('.progress-bar').css({</div>
+<div class="code nottested">                width: (i / len) * 100 + '%'</div>
+<div class="code nottested">            });</div>
+<div class="code nottested">        }</div>
+<div class="code nottested">    }</div>
+<div class="code nottested">    $('.progress-bar').prop("hidden", true);</div>
+<div class="code nottested"></div>
+<div class="code nottested"></div>
+<div class="code nottested">    arr.sort(function (a, b) {</div>
+<div class="code nottested">        return a.points - b.points;</div>
+<div class="code nottested">    });</div>
+<div class="code nottested"></div>
+<div class="code nottested">    arr.reverse();</div>
+<div class="code nottested">    var j = 0;</div>
+<div class="code nottested"></div>
+<div class="code nottested"></div>
+<div class="code nottested">    html += arr.map(function (a) {</div>
+<div class="code nottested">        j = j + 1;</div>
+<div class="code nottested">        return '&lt;tr&gt;<td>' + (j) + '</td>' + dataFormatter(a.avatar, a</div>
+<div class="code nottested">            .name, a.uname, a.points) + '&lt;/tr&gt;';</div>
+<div class="code nottested">    }).join('');</div>
+<div class="code nottested">    html += '&lt;/table&gt;';</div>
+<div class="code nottested"></div>
+<div class="code nottested">    $("#data").html(html);</div>
+<div class="code nottested"></div>
+<div class="code nottested">    //var a = $("#data").html();</div>
+<div class="code nottested">    $("#campers").html(</div>
+<div class="code nottested">        '&lt;h2&gt;<span class="label label-info">Total Campers:- ' + j +</div>
+<div class="code nottested">        '&lt;/span&gt;</h2>');</div>
+<div class="code nottested">    $("#totalProblems").html(</div>
+<div class="code nottested">        '&lt;h2&gt;<span class="label label-info">Total Problems:- ' + sum +</div>
+<div class="code nottested">        '&lt;/span&gt;</h2>');</div>
+<div class="code nottested"></div>
+<div class="code nottested">}</div>
+<div class="code nottested"></div>
+
+
+</body>
+</html>

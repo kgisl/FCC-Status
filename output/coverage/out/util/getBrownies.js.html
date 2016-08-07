@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .code {
+            white-space: pre;
+            font-family: courier new;
+            width: 100%;            
+        }
+        
+        .miss {
+            background-color: #FF0000;
+        }
+        
+        .hit {
+            background-color: #94FF7C;
+        }
+        
+        .undef {
+            background-color: #FFFFFF;
+        } 
+
+        .nottested {
+            background-color: #FFFF00;
+        }         
+    </style>
+</head>
+<body>
+
+<div class="code undef">/*global $:false */</div>
+<div class="code undef">/*jshint quotmark: false */</div>
+<div class="code undef">/*jshint loopfunc: true */</div>
+<div class="code undef">/*jslint latedef:false*/</div>
+<div class="code undef">/*jslint browser:true */</div>
+<div class="code undef">/*jshint maxparams: 5 */</div>
+<div class="code undef">/*global $:false, define, console*/</div>
+<div class="code undef"></div>
+<div class="code undef"></div>
+<div class="code hit">define([], function () {</div>
+<div class="code hit">    'use strict';</div>
+<div class="code undef"></div>
+<div class="code undef"></div>
+<div class="code hit">    return {</div>
+<div class="code undef">        getPoints: function (uname) {</div>
+<div class="code undef"></div>
+<div class="code undef"></div>
+<div class="code hit">            if (uname.length !== 0) {</div>
+<div class="code hit">                var points = 0;</div>
+<div class="code hit">                var url = 'https://www.freecodecamp.com/api/users/about?username=' + uname.toLowerCase();</div>
+<div class="code undef"></div>
+<div class="code hit">                console.log("\n**** URL " + url);</div>
+<div class="code undef"></div>
+<div class="code undef"></div>
+<div class="code hit">                $.ajax({</div>
+<div class="code undef">                    type: 'GET',</div>
+<div class="code undef">                    url: url,</div>
+<div class="code undef">                    //data:data,</div>
+<div class="code undef">                    async: false,</div>
+<div class="code undef">                    dataType: 'json',</div>
+<div class="code undef">                    success: function (data) {</div>
+<div class="code undef">                        //Do stuff with the JSON data</div>
+<div class="code miss">                        if (typeof (data) !== 'undefined') {</div>
+<div class="code miss">                            points = data.about.browniePoints;</div>
+<div class="code undef">                            // points = 310;</div>
+<div class="code undef">                        }</div>
+<div class="code undef">                    },</div>
+<div class="code undef">                    error: function ( /* xhr, textStatus, errorThrown */ ) {</div>
+<div class="code hit">                        points = 0;</div>
+<div class="code undef">                    }</div>
+<div class="code undef">                });</div>
+<div class="code undef"></div>
+<div class="code hit">                return points;</div>
+<div class="code undef"></div>
+<div class="code undef">            } else {</div>
+<div class="code hit">                return 0;</div>
+<div class="code undef">            }</div>
+<div class="code undef"></div>
+<div class="code undef">        }</div>
+<div class="code undef">    };</div>
+<div class="code undef"></div>
+<div class="code undef">});</div>
+
+
+</body>
+</html>

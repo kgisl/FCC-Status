@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .code {
+            white-space: pre;
+            font-family: courier new;
+            width: 100%;            
+        }
+        
+        .miss {
+            background-color: #FF0000;
+        }
+        
+        .hit {
+            background-color: #94FF7C;
+        }
+        
+        .undef {
+            background-color: #FFFFFF;
+        } 
+
+        .nottested {
+            background-color: #FFFF00;
+        }         
+    </style>
+</head>
+<body>
+
+<div class="code undef">/*jshint undef:false, strict:false*/ // Note: to avoid having to write QUnit.module, etc</div>
+<div class="code hit">require([</div>
+<div class="code undef">    'util/getBrownies',</div>
+<div class="code undef">    '../lib/jquery'</div>
+<div class="code undef">], function (gBot) {</div>
+<div class="code hit">    module('util.getBrownies');</div>
+<div class="code undef"></div>
+<div class="code hit">    test('existing user name', function () {</div>
+<div class="code hit">        QUnit.stop();</div>
+<div class="code hit">        equal(gBot.getPoints('kgashok'), 268, 'kgashok');</div>
+<div class="code hit">        QUnit.start();</div>
+<div class="code undef">    });</div>
+<div class="code undef">     </div>
+<div class="code hit">    test('length-zero user name', function () {</div>
+<div class="code hit">        QUnit.stop();</div>
+<div class="code hit">        equal(gBot.getPoints(''), 0, '');</div>
+<div class="code hit">        QUnit.start();</div>
+<div class="code undef">    });</div>
+<div class="code undef"></div>
+<div class="code undef">});</div>
+<div class="code undef"></div>
+
+
+</body>
+</html>
