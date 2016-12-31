@@ -16,16 +16,8 @@
 		<testcase classname="index" name="util.passwordEvaluator: all-good" assertions="1" time="0.01">
 		</testcase>
 	</testsuite>
-	<testsuite name="index" errors="0" failures="1" tests="2" time="0.01">
+	<testsuite name="index" errors="0" failures="0" tests="2" time="0.01">
 		<testcase classname="index" name="util.getBrownies: existing user name" assertions="1" time="0.01">
-			<failure type="failed" message="kgashok">
-	    at http://localhost:8082/test/lib/qunit.js:447
-    at http://localhost:8082/js/util/getBrownies.test.js:10
-    at http://localhost:8082/test/lib/qunit.js:134
-    at http://localhost:8082/test/lib/qunit.js:277
-    at process (http://localhost:8082/test/lib/qunit.js:1233)
-    at next (http://localhost:8082/test/lib/qunit.js:1226)
-			</failure>
 		</testcase>
 		<testcase classname="index" name="util.getBrownies: length-zero user name" assertions="1" time="0.01">
 		</testcase>

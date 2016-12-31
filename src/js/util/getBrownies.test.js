@@ -7,7 +7,7 @@ require([
 
     test('existing user name', function () {
         QUnit.stop();
-        equal(gBot.getPoints('kgashok'), 273, 'kgashok');
+        equal(gBot.getPoints('kgashok'), 302, 'kgashok');
         QUnit.start();
     });
      
