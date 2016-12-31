@@ -76,7 +76,7 @@ $(document).ready(function() {\n\
 
 	fo = open (versionFile, "w+")
 	fo.write (fileContent)
-	print (fileContent)
+	#print (fileContent)
 	print ("version.js updated with " + version)
 	fo.close()
 

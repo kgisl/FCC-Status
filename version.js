@@ -4,7 +4,7 @@
 
 $(document).ready(function() {
   var link = '<a href="https://github.com/kgisl/FCC-Status/issues/new" target="_blank">';
-  link += "v1.1-90-g0d126ff";
+  link += "v1.1-91-ga163f08";
   link += '</a>';
   //console.log (link);
   $("#feedback").html(link);
