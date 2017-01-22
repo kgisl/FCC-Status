@@ -26,7 +26,7 @@ status, version = commands.getstatusoutput ("git describe --tags --long")
 if not status: 
 	print ("Version: " + version)
 else: 
-	print "git describe return bad status!"
+	print "git describe returned bad status!"
 	version = "NA"
 
 previous = None
@@ -47,7 +47,7 @@ except:
 if version == "NA": 
 	pass 
 elif previous and previous.find (version) != -1:
-	print ("version.js already up-to-date!")
+	print (versionFile + " already up-to-date!")
 else: 
 	####################
 	## build JS code 
@@ -77,6 +77,6 @@ $(document).ready(function() {\n\
 	fo = open (versionFile, "w+")
 	fo.write (fileContent)
 	#print (fileContent)
-	print ("version.js updated with " + version)
+	print (versionFile + " updated with " + version)
 	fo.close()
 
